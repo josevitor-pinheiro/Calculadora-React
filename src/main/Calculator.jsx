@@ -39,32 +39,38 @@ export default class Calculator extends Component {
       switch (currentOperation) {
         case "*": {
           values[0] = values[0] * values[1];
+          break
         }
         case "/": {
           values[0] = values[0] / values[1];
+          break
         }
         case "-": {
           values[0] = values[0] - values[1];
+          break
         }
         case "+": {
           values[0] = values[0] + values[1];
-          console.log(values)
+          console.log(values);
+          break
+        }
+        case "=": {
+          let displayValue = values[0];
+          this.setState({ displayValue, clearDisplay: true });
+          break
         }
         default: {
           values[0] = this.state.values[0];
+          console.log(this.state.displayValue);
           console.log(currentOperation);
         }
       }
-
-      // função usando eval funciona, mas não é o desejado
 
       // try {
       //     values[0] = eval(`${values[0]} ${currentOperation} ${values[1]}`)
       // } catch(e) {
       //     values[0] = this.state.values[0]
       // }
-
-      values[1] = 0;
 
       this.setState({
         displayValue: values[0],
